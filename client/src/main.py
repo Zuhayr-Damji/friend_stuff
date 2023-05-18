@@ -1,7 +1,16 @@
-from ursina import *
+from panda3d.core import Shader
+from direct.showbase.ShowBase import ShowBase
 
-app = Ursina()
+class MyApp(ShowBase):
+    def __init__(self):
+        ShowBase.__init__(self)
+        
+        shader = Shader.load(Shader.SL_GLSL,
+                     vertex="shaders/vert.glsl",
+                     fragment="shaders/frag.glsl")
 
-cube = Entity(model='cube', color="#ffaabb")
+        self.render.set_shader(shader)
+        
 
+app = MyApp()
 app.run()
